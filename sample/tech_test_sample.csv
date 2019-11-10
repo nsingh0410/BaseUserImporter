@@ -1,0 +1,12 @@
+Email,First Name,Last Name,Password,Platforms,Additional Field
+testvalidemail@test.com,Fname,Lname,passwordvalid,ios,addField
+,Fname,Lname,passwordvalid,ios,addField
+testnofirstname@test.com,,Lname,passwordvalid,ios,addField
+testnolastname@test.com,Fname,,passwordvalid,ios,addField
+testnopassword@test.com,Fname,Lname,,ios,addField
+testnoplatform@test.com,Fname,Lname,passwordvalid,,addField
+invalidemail.com,Fname,Lname,passwordvalid,ios,addField
+testinvalidPassword@test.com,Fname,Lname,invPass,ios,addField
+testinvalidPlatform@test.com,Fname,Lname,passwordvalid,"ios, invalidplatform",addField
+testnostringFirstname@test.com,1,Lname,passwordvalid,ios,addField
+testnostringLastname@test.com,Fname,1,passwordvalid,ios,addField
