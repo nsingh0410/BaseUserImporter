@@ -1,51 +1,86 @@
-# CakePHP Application Skeleton
 
-[![Build Status](https://img.shields.io/travis/cakephp/app/master.svg?style=flat-square)](https://travis-ci.org/cakephp/app)
-[![Total Downloads](https://img.shields.io/packagist/dt/cakephp/app.svg?style=flat-square)](https://packagist.org/packages/cakephp/app)
+## Installation Instructions
 
-A skeleton for creating applications with [CakePHP](https://cakephp.org) 3.x.
-
-The framework source code can be found here: [cakephp/cakephp](https://github.com/cakephp/cakephp).
-
-## Installation
-
-1. Download [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
-2. Run `php composer.phar create-project --prefer-dist cakephp/app [app_name]`.
-
-If Composer is installed globally, run
-
-```bash
-composer create-project --prefer-dist cakephp/app
+1. git clone the repository.
+2. Make sure that you have all the requirements to run cakephp.
 ```
-
-In case you want to use a custom app dir name (e.g. `/myapp/`):
-
-```bash
-composer create-project --prefer-dist cakephp/app myapp
+https://book.cakephp.org/3/en/installation.html
 ```
-
-You can now either use your machine's webserver to view the default home page, or start
-up the built-in webserver with:
-
+2. run `composer install`.
+3. make sure that you have write access for cake
+```
+chmod +x bin/cake
+```
+4. run webserver (you can use cakephps one)
 ```bash
 bin/cake server -p 8765
 ```
 
-Then visit `http://localhost:8765` to see the welcome page.
+## Usage
 
-## Update
+1. Click the "choose file" button and select a CSV (I haven't made the behaviour force the user to only select CSV files).
+You can use the sample file that I use to test located
+```bash
+tests/TestCase/sample/tech-test-sample.php
+```
+You will also notice that I have create 2 json files to store Invalid and Valid Rows.
+```bash
+/BaseUserImporter/src/Files/export/Files/invalidRows.json
+/BaseUserImporter/src/Files/export/Files/validRows.json
+```
 
-Since this skeleton is a starting point for your application and various files
-would have been modified as per your needs, there isn't a way to provide
-automated upgrades, so you have to do any updates manually.
+Then visit `http://localhost:8765` to see the bulk user importer page.
 
-## Configuration
+## Unit Tests
 
-Read and edit `config/app.php` and setup the `'Datasources'` and any other
-configuration relevant for your application.
+1. you can run all the unit tests by using the following command in the current directory.
+I wrote the following unit tests.
 
-## Layout
+```bash
+tests/TestCase/Files/CsvTest.php
+tests/TestCase/Files/export/PresentationLayerTest.php
+tests/TestCase/Files/imports/BulkUserCSVTest.php
+tests/TestCase/Controller/BulkUserImporterControllerTest.php
+```
 
-The app skeleton uses a subset of [Foundation](http://foundation.zurb.com/) (v5) CSS
-framework by default. You can, however, replace it with any other library or
-custom styles.
+run all tests:
+```bash
+./vendor/bin/phpunit ./tests/
+```
+
+## Codesniffer Standards (uses PSR-2 guidelines)
+You can run the following command to see if the code is compliant with PSR-2 standards.
+```bash
+composer cs-check
+```
+
+## Design Patterns and Principles
+I Primary like to think of my controller as the driver.
+It uses the logic that is abstracted in other classes to perform operations.
+It makes the code much cleaner and easier to test
+```bash
+/BaseUserImporter/src/Controller/BulkUserImporterController.php
+```
+
+Following the single resonsibility principle (One class, One Responsibility),
+I wanted to create a CSV class that sole operation was to retrieve and set the CSV object.
+(you also will notice lots of getters and setters enabling us to dependancy inject values in the object, easier to write tests).
+```bash
+/BaseUserImporter/src/Files/CSV.php
+```
+
+Business Logic Layer:
+I wanted to create a specific class to deal with the buisness layer logic.
+This handles all the validation.
+```bash
+/BaseUserImporter/src/Files/imports/BulkUserCSV.php
+```
+
+Presentation Layer:
+Created a presentation layer which allows you to split the business logic with the outputted result.
+This makes it convenient in the future to output the results in another format.
+```bash
+/BaseUserImporter/src/Files/imports/BulkUserCSV.php
+```
+
+
