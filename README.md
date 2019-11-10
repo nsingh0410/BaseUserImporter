@@ -25,8 +25,8 @@ tests/TestCase/sample/tech-test-sample.php
 ```
 You will also notice that I have create 2 json files to store Invalid and Valid Rows.
 ```bash
-/Users/nikhilsingh/Documents/BaseUserImporter/src/Files/export/Files/invalidRows.json
-/Users/nikhilsingh/Documents/BaseUserImporter/src/Files/export/Files/validRows.json
+/BaseUserImporter/src/Files/export/Files/invalidRows.json
+/BaseUserImporter/src/Files/export/Files/validRows.json
 ```
 
 Then visit `http://localhost:8765` to see the bulk user importer page.
