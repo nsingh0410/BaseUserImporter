@@ -47,6 +47,12 @@ run all tests:
 ```bash
 ./vendor/bin/phpunit ./tests/
 ```
+I have also included the html coverage report which can be viewed in 
+```bash
+/coverage/index.html
+```
+Coverage for the code I write is about 85%.
+What this does is show how much percentage of the code has a unit test that covers it.
 
 ## Codesniffer Standards (uses PSR-2 guidelines)
 You can run the following command to see if the code is compliant with PSR-2 standards.
@@ -82,5 +88,11 @@ This makes it convenient in the future to output the results in another format.
 ```bash
 /BaseUserImporter/src/Files/imports/BulkUserCSV.php
 ```
+
+## Todos 
+1. Get code-coverage to 100%.
+2. Make the file only upload CSV.
+3. Better User Interface.
+4. A bit more application resilience.
 
 
