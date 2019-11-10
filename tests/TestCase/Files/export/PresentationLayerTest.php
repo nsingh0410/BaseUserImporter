@@ -13,8 +13,8 @@ use Cake\TestSuite\TestCase;
 class PresentationLayerTest extends TestCase
 {
     use IntegrationTestTrait;
-    protected $sampleDir = __DIR__ . '\..\..\sample';
-    protected $sampleValidRows = '\validRows.json';
+    protected $sampleDir = __DIR__ . '/../../sample';
+    protected $sampleValidRows = '/validRows.json';
 
     /**
      * test process method

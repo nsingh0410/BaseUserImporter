@@ -9,7 +9,7 @@ class PresentationLayer
      * @var string $outputFileDir the output file directory.
      */
     private $outputFileDir;
-    const INVALID_ROWS_JSON_FILE = '\invalidRows.json';
+    const INVALID_ROWS_JSON_FILE = '/invalidRows.json';
     /**
      * @var false|string
      */
@@ -29,7 +29,7 @@ class PresentationLayer
      */
     public function __construct(Array $options = [])
     {
-        $this->outputFileDir = $options['outputFileDir'] ?? __DIR__ . '\Files';
+        $this->outputFileDir = $options['outputFileDir'] ?? __DIR__ . '/Files';
         $this->outputFileName = $options['outputfileName'] ?? self::INVALID_ROWS_JSON_FILE;
         $this->fullPath = $this->outputFileDir . $this->outputFileName;
     }

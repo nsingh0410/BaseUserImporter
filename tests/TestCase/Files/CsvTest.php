@@ -13,7 +13,7 @@ use Cake\TestSuite\TestCase;
 class CsvTest extends TestCase
 {
     use IntegrationTestTrait;
-    protected $sampleFile = __DIR__ . '\..\sample\tech_test_sample.csv';
+    protected $sampleFile = __DIR__ . '/../sample/tech_test_sample.csv';
 
     public function testLoad()
     {
