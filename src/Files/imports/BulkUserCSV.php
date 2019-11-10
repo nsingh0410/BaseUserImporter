@@ -29,7 +29,7 @@ class BulkUserCSV extends CSV
     /**
      *  Read csv and validates csv data
      *
-     * @return void
+     * @return bool
      * @throws \App\Files\Exceptions\CSVException
      */
     public function processCSV()
@@ -38,57 +38,63 @@ class BulkUserCSV extends CSV
         $this->load();
 
         // Validates the inputs and builds a collection of the correct/incorrect records.
-        $this->validateData();
+        return $this->validateData();
     }
 
     /**
      * Validates the csv data.
-     * @return void
+     * @return bool
      */
     public function validateData()
     {
-        $this->rows = $this->getData();
-        $rows = $this->rows;
-        $this->getHeader();
+        try {
+            $this->rows = $this->getData();
+            $rows = $this->rows;
+            $this->getHeader();
 
-        foreach ($rows as $rowData) {
-            $fieldErrors = [];
+            foreach ($rows as $rowData) {
+                $fieldErrors = [];
 
-            if (empty($rowData['first_name']) === true || ctype_alpha($rowData['first_name']) === false) {
-                $fieldErrors[] = $rowData['first_name'];
-            }
+                if (empty($rowData['first_name']) === true || ctype_alpha($rowData['first_name']) === false) {
+                    $fieldErrors[] = $rowData['first_name'];
+                }
 
-            if (empty($rowData['last_name']) === true || ctype_alpha($rowData['last_name']) === false) {
-                $fieldErrors[] = $rowData['last_name'];
-            }
-            if (empty($rowData['email']) === true || !filter_var($rowData['email'], FILTER_VALIDATE_EMAIL)) {
-                $fieldErrors[] = $rowData['email'];
-            }
+                if (empty($rowData['last_name']) === true || ctype_alpha($rowData['last_name']) === false) {
+                    $fieldErrors[] = $rowData['last_name'];
+                }
+                if (empty($rowData['email']) === true || !filter_var($rowData['email'], FILTER_VALIDATE_EMAIL)) {
+                    $fieldErrors[] = $rowData['email'];
+                }
 
-            if (empty($rowData['password']) === true || strlen($rowData['password']) < 8) {
-                $fieldErrors[] = $rowData['password'];
-            }
+                if (empty($rowData['password']) === true || strlen($rowData['password']) < 8) {
+                    $fieldErrors[] = $rowData['password'];
+                }
 
-            if (empty($rowData['platforms']) === true) {
-                $fieldErrors[] = $rowData['platforms'];
-            } else {
-                // divide the platforms in the csv by the (,) Delimiter and check if there are any
-                // errors in the platform.
-                $platformsArray = explode(',', $rowData['platforms']);
-                foreach ($platformsArray as $platform) {
-                    if (!in_array(trim($platform), $this->requiredPlatforms)) {
-                        $fieldErrors[] = $rowData['platforms'];
+                if (empty($rowData['platforms']) === true) {
+                    $fieldErrors[] = $rowData['platforms'];
+                } else {
+                    // divide the platforms in the csv by the (,) Delimiter and check if there are any
+                    // errors in the platform.
+                    $platformsArray = explode(',', $rowData['platforms']);
+                    foreach ($platformsArray as $platform) {
+                        if (!in_array(trim($platform), $this->requiredPlatforms)) {
+                            $fieldErrors[] = $rowData['platforms'];
+                        }
                     }
                 }
-            }
 
-            // if there are no field errors, we regard as valid otherwise invalid.
-            if (empty($fieldErrors) === true) {
-                $this->validRows[] = $rowData;
-            } else {
-                $this->invalidRows[] = $rowData;
-            }
-        }// end rows
+                // if there are no field errors, we regard as valid otherwise invalid.
+                if (empty($fieldErrors) === true) {
+                    $this->validRows[] = $rowData;
+                } else {
+                    $this->invalidRows[] = $rowData;
+                }
+            }// end rows
+        } catch (\Exception $exception) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
