@@ -58,7 +58,7 @@ class BulkUserImporterController extends AppController
                     $invalidRows = $outputResults->getJsonResult();
 
                     // Exports the successful results to json file (src/Files/export/Files/validRows.json)
-                    $options['outputfileName'] = '\validRows.json';
+                    $options['outputfileName'] = '/validRows.json';
                     $outputResults = new PresentationLayer($options);
                     $outputResults->exportToJsonFile($validRows);
                     $validRows = $outputResults->getJsonResult();

@@ -20,7 +20,7 @@ class BulkUserImporterControllerTest extends TestCase
 
     public function testIndexPostData()
     {
-        $sampleFile = __DIR__ . '\..\sample\tech_test_sample.csv';
+        $sampleFile = __DIR__ . '/../sample/tech_test_sample.csv';
         $data = [
             "file" => [
             "tmp_name" => $sampleFile,
