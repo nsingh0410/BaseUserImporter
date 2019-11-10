@@ -15,10 +15,12 @@ chmod +x bin/cake
 ```bash
 bin/cake server -p 8765
 ```
+Then visit `http://localhost:8765` to see the bulk user importer page.
 
 ## Usage
 
-1. Click the "choose file" button and select a CSV (I haven't made the behaviour force the user to only select CSV files).
+1. launch web server and run in browser (You can easily use cake phps one instructions above).
+2. Click the "choose file" button and select a CSV (I haven't made the behaviour force the user to only select CSV files).
 You can use the sample file that I use to test located
 ```bash
 tests/TestCase/sample/tech-test-sample.php
@@ -28,8 +30,6 @@ You will also notice that I have create 2 json files to store Invalid and Valid 
 /BaseUserImporter/src/Files/export/Files/invalidRows.json
 /BaseUserImporter/src/Files/export/Files/validRows.json
 ```
-
-Then visit `http://localhost:8765` to see the bulk user importer page.
 
 ## Unit Tests
 
