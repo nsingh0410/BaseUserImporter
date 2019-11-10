@@ -59,28 +59,28 @@ I Primary like to think of my controller as the driver.
 It uses the logic that is abstracted in other classes to perform operations.
 It makes the code much cleaner and easier to test
 ```bash
-/Users/nikhilsingh/Documents/BaseUserImporter/src/Controller/BulkUserImporterController.php
+/BaseUserImporter/src/Controller/BulkUserImporterController.php
 ```
 
 Following the single resonsibility principle (One class, One Responsibility),
 I wanted to create a CSV class that sole operation was to retrieve and set the CSV object.
 (you also will notice lots of getters and setters enabling us to dependancy inject values in the object, easier to write tests).
 ```bash
-/Users/nikhilsingh/Documents/BaseUserImporter/src/Files/CSV.php
+/BaseUserImporter/src/Files/CSV.php
 ```
 
 Business Logic Layer:
 I wanted to create a specific class to deal with the buisness layer logic.
 This handles all the validation.
 ```bash
-/Users/nikhilsingh/Documents/BaseUserImporter/src/Files/imports/BulkUserCSV.php
+/BaseUserImporter/src/Files/imports/BulkUserCSV.php
 ```
 
 Presentation Layer:
 Created a presentation layer which allows you to split the business logic with the outputted result.
 This makes it convenient in the future to output the results in another format.
 ```bash
-/Users/nikhilsingh/Documents/BaseUserImporter/src/Files/imports/BulkUserCSV.php
+/BaseUserImporter/src/Files/imports/BulkUserCSV.php
 ```
 
 
