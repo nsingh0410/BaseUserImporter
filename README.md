@@ -1,17 +1,17 @@
 
 ## Installation Instructions
 
-1. git clone the repository.
+1. Git clone the repository.
 2. Make sure that you have all the requirements to run cakephp.
 ```
 https://book.cakephp.org/3/en/installation.html
 ```
-2. run `composer install`.
-3. make sure that you have write access for cake
+2. Run `composer install`.
+3. Make sure that you have write access for cake
 ```
 chmod +x bin/cake
 ```
-4. run webserver (you can use cakephps one)
+4. Run webserver (you can use cakephps one)
 ```bash
 bin/cake server -p 8765
 ```
@@ -33,7 +33,7 @@ You will also notice that I have create 2 json files to store Invalid and Valid 
 
 ## Unit Tests
 
-1. you can run all the unit tests by using the following command in the current directory.
+1. You can run all the unit tests by using the following command in the current directory.
 I wrote the following unit tests.
 
 ```bash
